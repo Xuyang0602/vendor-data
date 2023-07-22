@@ -1,0 +1,19 @@
+{
+  "name": "vendor-data",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Xuyang0602/vendor-data.git",
+  "author": "xuyangwang0827 <xuyangwang0827@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node \"build/index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/util-dynamodb": "^3.370.0",
+    "aws-sdk": "^2.1420.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
