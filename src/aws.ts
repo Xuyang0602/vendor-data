@@ -1,5 +1,7 @@
 import AWS from 'aws-sdk';
 import { AWSRegions } from './types/aws';
+import { Vendor } from './types/twitter';
+import { marshall } from '@aws-sdk/util-dynamodb';
 
 AWS.config.update({ region: AWSRegions.US_EAST_1 });
 
@@ -62,3 +64,22 @@ export const dynamodbDeleteTable = async (tableName: string) => {
 };
 
 // 4 - create a record
+export const dynamodbCreateRecord = async (
+  tableName: string,
+  item: Vendor
+) => {
+  try {
+    await dynamodb
+      .putItem({
+        TableName: tableName,
+        Item: marshall(item),
+      })
+      .promise();
+    console.log('Record created');
+  } catch (err) {
+    if (err instanceof Error) {
+      return err;
+    }
+    throw new Error('dynamodbCreateRecord error object unknown type');
+  }
+};

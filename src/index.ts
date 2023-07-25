@@ -2,7 +2,9 @@ import {
   dynamodbCreateTable,
   dynamodbDescribeTable,
   dynamodbDeleteTable,
+  dynamodbCreateRecord,
 } from './aws';
+import vendors from './data/vendors';
 
 const init = async () => {
   const TABLE_NAME = 'vendors';
@@ -19,13 +21,16 @@ const init = async () => {
     },
   };
 
+  const firstVendors = vendors[0];
+
   //   const table = dynamodbDescribeTable(TABLE_NAME);
 
   //   if (table instanceof Error) {
-  dynamodbCreateTable(vendorsTableParams);
+  //   dynamodbCreateTable(vendorsTableParams);
   //   } else {
   // dynamodbDeleteTable(TABLE_NAME);
   //   }
+  await dynamodbCreateRecord(TABLE_NAME, firstVendors);
 };
 
 init();
