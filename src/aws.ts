@@ -24,7 +24,24 @@ export const dynamodbCreateTable = async (
 };
 
 // 2 - Describe a table
+export const dynamodbDescribeTable = async (tableName: string) => {
+  try {
+    const table = await dynamodb
+      .describeTable({ TableName: tableName })
+      .promise();
 
+    console.log('Table retrieved', table);
+
+    return table;
+  } catch (err) {
+    if (err instanceof Error) {
+      return err;
+    }
+    throw new Error(
+      'dynamodbDescribeTable error object unknown type'
+    );
+  }
+};
 // 3 - delete a table
 
 // 4 - create a record
